@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Angular project</h1>
+            <h2>2+2</h2>
+            
+            <!--interpolation-->
+            <h1 >this is {{title}}</h1>
+            <br>
+            <h1>{{getValue()}}</h1>
+            <br>
+            <!--property binding-->
+            <input type="text" [disabled]="disableBox" [value]=title>
+            <br>
+            <input type="text" disabled={{disableBox}} value={{title}}>
+            <br>
+            <button class="btn btn-primary" (click)="enableBox()">click</button>
+            <br>
+            
+            <!--event binding-->
+            <p>{{server}}</p>
+            <button class="btn btn-primary" (click)="onServer()">click</button>
+            <br>
+            <br>
+            <!--two way binding-->
+            <input type="text" class="form-control" [(ngModel)]="username">
+            <br>
+            <h3>{{username}}</h3>
+            <button class="btn btn-primary" [disabled]="username === ''" (click)="username= ''">Reset</button>
+            <br>
+            <br>
+            <button class="btn btn-primary" (click)="onClick()">Display Detail</button>
+            <p *ngIf="show">password=none</p>
+            <div *ngFor="let item of log">{{item}}</div>
+            <br><br>
+            <!--routing-->
+            <h3>routing part</h3>
+            <a routerLink="">Home</a>&nbsp;&nbsp;
+            <a routerLink="about">About</a>&nbsp;&nbsp;
+            <a routerLink="user">User</a>
+            <br><br>
+            <a routerLink="user/10">User1</a>
+            <br><br>
+            <a routerLink="user/20">User2</a>
+            <br><br>
+            <a routerLink="user/30">User3</a>
+
+            <router-outlet></router-outlet>
+            <!--form-->
+            <form #loginForm="ngForm" (ngSubmit)=userLogin(loginForm.value)>
+                <input type="text" required #name="ngModel" name="name" placeholder="Enter name"  ngModel>
+                <br><span *ngIf="name.invalid && name.touched" style="color: red;">Please enter valid input</span>
+                <br>
+                <input type="password" required #password="ngModel" name="password" placeholder="Enter password" ngModel>
+                <br><span *ngIf="password.invalid && password.touched" style="color: red;">Please enter valid input</span>
+                <br>
+                <button [disabled]="loginForm.invalid" class="btn btn-primary">login</button>
+                <br><br>
+            </form>
+            <ul >
+                <li *ngFor="let item of list">
+                    {{item.password}} 
+                </li>
+            </ul>
+            <br><br>
+            <!--service-->
+            <ul>
+                <li *ngFor="let user of users">
+                    {{user.name}} : {{user.age}}
+
+                </li>
+            </ul>
+            <!--componenet-->
+            <app-user-list></app-user-list>
+
+
+        </div>
+    </div>
+</div>
